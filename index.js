@@ -108,7 +108,8 @@ ${data.contribution}
 
 ## License
 
-[${licenseChoice}]
+${licenseChoice}  
+For more information about this license, [click here](https://choosealicense.com/)
 
 
 ## Tests

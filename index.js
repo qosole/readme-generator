@@ -67,9 +67,15 @@ inquirer.prompt(questions).then((data) => {
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
+    const licenseChoice = data.license.substr(3); // Removing the label ("B. MIT License" becomes "MIT License")
+    // licenseURL is used to obtain the badge for the license (split and join are used to remove spaces)
+    const licenseURL = `https://img.shields.io/badge/license-${licenseChoice.split(' ').join('')}-green`; 
     const dataLiteral = 
 `# ${data.title}
     
+![License](${licenseURL})
+
+
 ## Description
 
 ${data.description}
@@ -102,7 +108,7 @@ ${data.contribution}
 
 ## License
 
-[${data.license.substr(3)}]
+[${licenseChoice}]
 
 
 ## Tests

@@ -59,12 +59,6 @@ const questions = [
     }
 ];
 
-console.log('Welcome to Readme Generator! Please respond to the following prompts to generate a readme!');
-console.log('-------------------------------------------------------------------------------------');
-inquirer.prompt(questions).then((data) => {
-    writeToFile('./generated-readmes/README.md', data);
-});
-
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     const licenseChoice = data.license.substr(3); // Removing the label ("B. MIT License" becomes "MIT License")
@@ -128,7 +122,13 @@ GitHub: [${data.username}](https://github.com/${data.username})`;
 }
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    console.log('Welcome to Readme Generator! Please respond to the following prompts to generate a readme!');
+    console.log('-------------------------------------------------------------------------------------');
+    inquirer.prompt(questions).then((data) => {
+        writeToFile('./generated-readmes/README.md', data);
+});
+}
 
 // Function call to initialize app
 init();

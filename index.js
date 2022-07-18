@@ -3,18 +3,18 @@ const inquirer = require('inquirer');
 const fs = require ('fs');
 
 const licenseChoices = [
-    '1. GNU General Public License v3.0',
-    '2. MIT License',
-    '3. BSD 2-Clause "Simplified" License',
-    '4. BSD 3-Clause "New" or "Revised" License',
-    '5. Boost Software License 1.0',
-    '6. Creative Commons Zero v1.0 Universal',
-    '7. Eclipse Public License 2.0',
-    '8. GNU Affero General Public License v3.0',
-    '9. GNU General Public License v2.0',
-    '10. GNU Lesser General Public License v2.1',
-    '11. Mozilla Public License 2.0',
-    '12. The Unlicense'
+    'A. GNU General Public License v3.0',
+    'B. MIT License',
+    'C. BSD 2-Clause "Simplified" License',
+    'D. BSD 3-Clause "New" or "Revised" License',
+    'E. Boost Software License 1.0',
+    'F. Creative Commons Zero v1.0 Universal',
+    'G. Eclipse Public License 2.0',
+    'H. GNU Affero General Public License v3.0',
+    'I. GNU General Public License v2.0',
+    'J. GNU Lesser General Public License v2.1',
+    'K. Mozilla Public License 2.0',
+    'L. The Unlicense'
 ]
 
 // TODO: Create an array of questions for user input
@@ -67,7 +67,55 @@ inquirer.prompt(questions).then((data) => {
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, JSON.stringify(data), (err) => {
+    const dataLiteral = 
+`# ${data.title}
+    
+## Description
+
+${data.description}
+
+
+## Table of Contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+* [Contributing](#contributing)
+* [License](#license)
+* [Tests](#tests)
+* [Questions](#questions)
+
+
+## Installation
+
+${data.installation}
+
+
+## Usage
+
+${data.usage}
+
+
+## Contributing
+
+${data.contribution}
+
+
+## License
+
+[${data.license.substr(3)}]
+
+
+## Tests
+
+${data.test}
+
+
+## Questions
+
+Have additional questions? Reach me here:  
+Email: ${data.email}  
+GitHub: [${data.username}](https://github.com/${data.username})`;
+    fs.writeFile(fileName, dataLiteral, (err) => {
         err ? console.error(err) : console.log('Readme successfully generated!');
     });
 }
